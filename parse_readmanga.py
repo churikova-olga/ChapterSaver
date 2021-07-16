@@ -22,11 +22,11 @@ def get_content(html):
     updates = [" ".join(items[i].text.split()) for i in range(len(items))]
     return updates
 
-def parse(today):
+def parse(today,data):
     #if html.status_code == 200:
         # если нажата кнопка обновить
     chapters = []
-    for i in range(0, 6):
+    for i in range(0, data.days+1):
         html = get_html(URL, today)
         if html.status_code == 200:
             chapters.extend(get_content(html.text))
@@ -42,8 +42,8 @@ br.set_cookiejar(cj)
 br.open("https://grouple.co/internal/auth/login")
 
 br.select_form(nr=0)
-br.form['username'] = 'olga_churikova890@mail.ru'
-br.form['password'] = '523896'
+br.form['username'] = 'alekstankist111'
+br.form['password'] = '22572258'
 br.submit()
 
 #парсинг закладок
@@ -56,10 +56,15 @@ for s in soup.select('span'):
 bookmarks = [" ".join(items[i].text.split()) for i in range(len(items))]
 
 day = datetime.timedelta(days=1)
+f = open('datas.txt', 'r')
 now = datetime.datetime.now()
+last = f.readline()
 today = datetime.date(now.year, now.month, now.day)
+last_update = datetime.datetime.strptime(last, '%Y-%m-%d')
+last_update = datetime.date(last_update.year, last_update.month, last_update.day)
+data = today - last_update
 
-updates = parse(today)
+updates = parse(today, data)
 manga = []
 
 #сравнивание закладок и обновлений
@@ -67,4 +72,3 @@ for i in range(len(bookmarks)):
    for j in range(len(updates)):
         if(bookmarks[i]==updates[j][0:len(bookmarks[i])]):
             manga.append(updates[j])
-

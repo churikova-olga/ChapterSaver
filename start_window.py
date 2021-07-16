@@ -5,7 +5,6 @@ from PyQt5 import Qt
 from PyQt5.QtCore import Qt as core
 from PyQt5.QtGui import QIcon
 
-
 class Widget(QtWidgets.QMainWindow):
 
     def __init__(self):
@@ -22,9 +21,7 @@ class Widget(QtWidgets.QMainWindow):
             self.listWidget.addItem(item)
 
 
-
-
 app = QtWidgets.QApplication(sys.argv)
-ex=Widget()
+ex = Widget()
 ex.show()
 sys.exit(app.exec_())

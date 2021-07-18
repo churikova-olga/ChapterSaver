@@ -4,6 +4,7 @@ from PyQt5 import uic
 from PyQt5 import Qt
 from PyQt5.QtCore import Qt as core
 from PyQt5.QtGui import QIcon
+#import login_window
 
 class Widget(QtWidgets.QMainWindow):
 
@@ -19,6 +20,11 @@ class Widget(QtWidgets.QMainWindow):
             item = Qt.QListWidgetItem(item_text)
             item.setTextAlignment(core.AlignHCenter)
             self.listWidget.addItem(item)
+        #self.pushButton.clicked.connect(self.button_clicked)
+
+    #def button_clicked(self):
+        #self.ui = login_window.Widget(QtWidgets.QMainWindow)
+        #self.ui.show()
 
 
 app = QtWidgets.QApplication(sys.argv)

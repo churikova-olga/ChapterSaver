@@ -25,8 +25,6 @@ def get_content(html):
     return updates
 
 def parse(today, data):
-    #if html.status_code == 200:
-        # если нажата кнопка обновить
     chapters = open('temp.txt', 'w', encoding = 'utf-8')
     day = datetime.timedelta(days=1)
     for i in range(0, data.days+1):
@@ -50,12 +48,12 @@ def main():
     # открываем файл с логином и паролем
     login = open('login.txt', 'r', encoding = 'utf-8')
     enter = login.readlines()
-    br.form['username'] = enter[0]
-    br.form['password'] = enter[1]
+    br.form['username'] = enter[0][:-1]
+    br.form['password'] = enter[1][:-1]
     br.submit()
     check = open('check.txt', 'w', encoding='utf-8')
     new_title = br.title()
-    #print(update_url.read().decode('utf-8'))
+    print(new_title)
     if (last_title == new_title) or new_title == 'Ручная активация учетной записи GroupLe':
         check.write('False')
     else:

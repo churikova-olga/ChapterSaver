@@ -30,25 +30,25 @@ class Widget(QtWidgets.QMainWindow):
         lay.addWidget(self.login_lineEdit)
         lay.addWidget(self.password_lineEdit)
 
-        #if check == 'False':
-            #self.login_Button.clicked.connect(self.closeEvent)
+
     def my_slot_function(self):
         f = open('login.txt', 'w', encoding='utf-8')
-        password = (self.password_lineEdit.text())
         login = (self.login_lineEdit.text())
-        f.write(login+'\n'+password)
+        password = (self.password_lineEdit.text())
+        f.write(login+'\n'+password+'\n')
         f.close()
         parse_readmanga.main()
         check = open('check.txt', 'r')
         check = check.readline()
-        print(check)
-
-    #def closeEvent(self, event):
-        #reply = QMessageBox(self, 'Message',
-            #"Неверный логин или пароль, порбуйте еще раз", QMessageBox.Ok)
-        #if reply == QMessageBox.Ok:
-            #event.ignore()
-
+        if check == 'False':
+            msg = QMessageBox()
+            msg.setWindowTitle("Ошибка")
+            msg.setText("Неправильно введен логин или пароль")
+            msg.setIcon(QMessageBox.Warning)
+            msg.exec_()
+        else:
+            pass
+            #переход на другое окно
 
 
 app = QtWidgets.QApplication(sys.argv)

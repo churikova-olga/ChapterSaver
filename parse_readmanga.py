@@ -53,7 +53,6 @@ def main():
     br.submit()
     check = open('check.txt', 'w', encoding='utf-8')
     new_title = br.title()
-    print(new_title)
     if (last_title == new_title) or new_title == 'Ручная активация учетной записи GroupLe':
         check.write('False')
     else:
@@ -76,16 +75,20 @@ def main():
         data = today - last_update
 
         parse(today, data)
-
+        f.close()
         f = open('temp.txt', 'r', encoding = 'utf-8')
-
+        deleted = open('deleted.txt', 'r', encoding = 'utf-8')
+        d = deleted.readlines()
         #сравнивание закладок и обновлений
         manga = open('update.txt', 'w', encoding = 'utf-8')
         for line in f:
             for i in range(len(bookmarks)):
                 if(bookmarks[i]==line[0:len(bookmarks[i])]):
-                    manga.write(line)
+                    if line not in d:
+                        manga.write(line)
         manga.close()
         check.write('True')
+        f.close()
     check.close()
+
 main()

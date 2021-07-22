@@ -46,6 +46,9 @@ QPushButton:hover{
      <height>41</height>
     </rect>
    </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
   </widget>
   <widget class="QPushButton" name="back_Button">
    <property name="geometry">

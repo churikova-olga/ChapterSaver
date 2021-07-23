@@ -91,4 +91,3 @@ def main():
         f.close()
     check.close()
 
-main()
